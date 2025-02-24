@@ -81,17 +81,15 @@ const products: Array<Product> = [
 ];
 
 export const App = () => {
-  const [loading, setLoading] = useState(false);
   const [thxShow, setThx] = useState(LS.getItem(LSKeys.ShowThx, false));
 
   const submit = () => {
-    setLoading(true);
-
-    Promise.resolve().then(() => {
-      LS.setItem(LSKeys.ShowThx, true);
-      setThx(true);
-      setLoading(false);
+    window.gtag("event", "4197_get_sub", {
+      variant_name: "4197_1",
     });
+
+    LS.setItem(LSKeys.ShowThx, true);
+    setThx(true);
   };
 
   if (thxShow) {
@@ -212,7 +210,7 @@ export const App = () => {
       <Gap size={72} />
 
       <div className={appSt.bottomBtn}>
-        <ButtonMobile block view="primary" loading={loading} onClick={submit}>
+        <ButtonMobile block view="primary" onClick={submit}>
           Подключить
         </ButtonMobile>
       </div>
